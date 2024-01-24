@@ -1,5 +1,3 @@
-import React from "react";
-import { FiEdit, FiTrash } from "react-icons/fi";
 import Task from "./Task";
 
 let data = [

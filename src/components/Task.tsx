@@ -3,6 +3,8 @@ import React from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
 import Modal from "./Modal";
 import TaskCreateForm from "./Form/TaskCreateForm";
+import { Badge } from "flowbite-react";
+import { Checkbox, Label } from "flowbite-react";
 
 type Props = {
   task: any;
@@ -35,26 +37,26 @@ export default function Task({ task }: Props) {
               {task.title}
             </h2>
           </div>
-          <div
-            className={`badge ${
-              task.priority === "high"
-                ? "badge-success"
-                : task.priority === "medium"
-                ? "badge-warning"
-                : task.priority === "low"
-                ? "badge-info"
-                : ""
-            } gap-2 capitalize`}
-          >
-            {task.priority}
+          <div>
+            <Badge
+              className="capitalize"
+              color={
+                task.priority === "low"
+                  ? "green"
+                  : task.priority === "medium"
+                  ? "yellow"
+                  : task.priority === "high"
+                  ? "red"
+                  : ""
+              }
+            >
+              {task.priority}
+            </Badge>
           </div>
 
-          <div className="flex items-center gap-1">
-            <input
-              type="checkbox"
-              checked={!task.status}
-              className="checkbox checkbox-primary"
-            />
+          <div className="flex items-center gap-2">
+            <Checkbox className="w-6 h-6" checked={!task.status} />
+
             <button
               onClick={showModal}
               className="btn btn-outline btn-primary btn-xs"
