@@ -20,7 +20,6 @@ const config: Config = {
   plugins: [
     require("daisyui"),
     require("@tailwindcss/forms"),
-    require("@tailwindcss/line-clamp"),
     require("flowbite/plugin"),
   ],
 };

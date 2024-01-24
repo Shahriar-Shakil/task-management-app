@@ -17,7 +17,7 @@ export async function POST(request: Request) {
     if (result.data) {
       return NextResponse.json({ status: "success", data: result.data });
     }
-  } catch (error) {
+  } catch (error: any) {
     return NextResponse.json({ status: "fail", data: error.toString() });
   }
 }
