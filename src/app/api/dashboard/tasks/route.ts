@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    console.log("working");
     // const headerList = headers();
     // const authorId = parseInt(headerList.get("id") || "");
 
@@ -61,7 +60,6 @@ export async function DELETE(req: Request) {
       `/users/${authorId}/tasks/${reqBody.id}`,
       reqBody
     );
-    console.log(result.data);
     if (result.data) {
       return NextResponse.json({ status: "success", data: result.data });
     } else {

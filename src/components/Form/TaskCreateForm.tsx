@@ -38,7 +38,7 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
       setLoading(false);
 
       if (result.data.status === "success") {
-        toast.success("Blog Create Successfully");
+        toast.success("Task Create Successfully");
         reset();
         closeModal();
         router.refresh();

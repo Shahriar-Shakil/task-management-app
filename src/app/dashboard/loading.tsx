@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Loading() {
   return (
-    <div className="flex items-center justify-center w-full h-full">
+    <div className=" fixed inset-0  z-[10000] flex flex-1 items-center justify-center">
       <div className="flex justify-center items-center space-x-1 text-sm text-gray-700">
         <svg
           fill="none"

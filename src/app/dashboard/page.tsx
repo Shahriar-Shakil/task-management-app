@@ -7,9 +7,7 @@ import { headers } from "next/headers";
 const getUser = async () => {
   const headerList = headers();
   const user_id = parseInt(headerList.get("id") || "");
-  const res = await fetch(`${process.env.BACKEND_URL}/users/${user_id}`, {
-    next: { revalidate: 0 },
-  });
+  const res = await fetch(`${process.env.BACKEND_URL}/users/${user_id}`);
   let userRes = await res.json();
   return {
     name: userRes.name,
@@ -17,8 +15,15 @@ const getUser = async () => {
   };
 };
 
-export default async function Home() {
+export default async function Home({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const user = await getUser();
+  const { priority, status, search } = searchParams ?? {};
   return (
     <main className=" min-h-screen  p-8 md:p-24  ">
       <div className="flex flex-col items-center space-y-8 border border-black   py-8 px-4">
@@ -33,7 +38,7 @@ export default async function Home() {
         <div className=" max-w-2xl w-full items-center justify-between font-mono text-sm lg:flex">
           <div className="w-full space-y-3">
             <FilterUI />
-            <Tasks />
+            <Tasks priority={priority} status={status} search={search} />
           </div>
         </div>
         <CreateTask />

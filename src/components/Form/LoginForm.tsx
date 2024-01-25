@@ -32,7 +32,6 @@ export default function LoginForm() {
       if (res.data.status === "success") {
         router.push(callbackUrl);
       } else {
-        console.log(res.data);
         toast.error("No user found in this Mail");
       }
     } catch (error: any) {
@@ -70,7 +69,7 @@ export default function LoginForm() {
                     required
                     className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
-                  <p className="text-red-300">{errors.email?.message}</p>
+                  <p className="text-red-500">{errors.email?.message}</p>
                 </div>
               </div>
 
@@ -92,7 +91,7 @@ export default function LoginForm() {
                     required
                     className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
-                  <p className="text-red-300">{errors.password?.message}</p>
+                  <p className="text-red-500">{errors.password?.message}</p>
                 </div>
               </div>
 

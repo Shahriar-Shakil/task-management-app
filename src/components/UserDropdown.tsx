@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
-import { Avatar, Dropdown } from "flowbite-react";
+import React, { useState } from "react";
+import { Avatar, Button, Dropdown } from "flowbite-react";
 import { extractFirstLetters } from "@/utils/utility";
 import toast from "react-hot-toast";
 import axios from "axios";
@@ -12,14 +12,21 @@ type Props = {
 
 export default function UserDropdown({ user }: Props) {
   const name: string = extractFirstLetters(user.name);
-
+  const [loading, setLoading] = useState(false);
   const handleSignOut = async () => {
-    let res = await axios.get("/api/user/login");
+    setLoading(true);
+    try {
+      let res = await axios.get("/api/user/login");
+      setLoading(false);
 
-    if (res.data["status"] === "success") {
-      toast.success("Logout success");
-      window.location.href = "/";
-    } else {
+      if (res.data["status"] === "success") {
+        toast.success("Logout success");
+        window.location.href = "/";
+      } else {
+        toast.error("Request Fail");
+      }
+    } catch (error) {
+      setLoading(false);
       toast.error("Request Fail");
     }
   };
@@ -37,7 +44,16 @@ export default function UserDropdown({ user }: Props) {
         <span className="block text-sm">{user.name}</span>
         <span className="block truncate text-sm font-medium">{user.email}</span>
       </Dropdown.Header>
-      <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
+      <Button
+        outline
+        color="gray"
+        className="w-full border-0 outline-none"
+        onClick={handleSignOut}
+        isProcessing={loading}
+        disabled={loading}
+      >
+        Sign out
+      </Button>
     </Dropdown>
   );
 }
