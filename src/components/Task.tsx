@@ -99,7 +99,7 @@ export default function Task({ task }: Props) {
             </Badge>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 md:gap-2">
             <Button
               onClick={() => handleChangeStatus(task)}
               color="light"
