@@ -2,6 +2,21 @@
 
 This is a simple task manager app built with Next.js, utilizing a mock API for data management. To access the app's features, users are required to register and sign in. Authentication is secured through tokens stored in cookies, managed by Next.js API routes.
 
+#### [Live here](https://task-management-app-eight-lemon.vercel.app/) in your browser to access the app.
+
+#### Dummy Account
+
+1. **Sign in credential :**
+
+   ```bash
+   email
+   toshahriarshakil@gmail.com  or john@gmail.com
+   # password
+   aaaa
+
+
+   ```
+
 ## Features
 
 - **User Authentication**: Register and sign in to access the task management functionality.
