@@ -33,7 +33,7 @@ export default function FilterUI({}: Props) {
     } else {
       router.replace("/dashboard", undefined);
     }
-  }, [debouncedSearchTerm, router, pathname, createQueryString]);
+  }, [debouncedSearchTerm]);
   const handlePriority = (e: any) => {
     router.push(pathname + "?" + createQueryString("priority", e.target.value));
   };
