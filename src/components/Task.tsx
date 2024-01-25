@@ -1,25 +1,21 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FiEdit, FiTrash } from "react-icons/fi";
-import Modal from "./Modal";
+import Modal from "./ModalCompoent";
 import TaskCreateForm from "./Form/TaskCreateForm";
 import { Badge } from "flowbite-react";
 import { Checkbox, Label } from "flowbite-react";
+import TaskEditForm from "./Form/TaskEditForm";
+import { TaskInterface } from "@/lib/types";
+import ModalComponent from "./ModalCompoent";
 
 type Props = {
-  task: any;
+  task: TaskInterface;
 };
 
 export default function Task({ task }: Props) {
-  const showModal = () => {
-    const modalElement = document.getElementById(
-      "my_modal"
-    ) as HTMLDialogElement | null;
+  const [openModal, setOpenModal] = useState(false);
 
-    if (modalElement) {
-      modalElement.showModal();
-    }
-  };
   return (
     <>
       <div
@@ -58,7 +54,7 @@ export default function Task({ task }: Props) {
             <Checkbox className="w-6 h-6" checked={!task.status} />
 
             <button
-              onClick={showModal}
+              onClick={() => setOpenModal(true)}
               className="btn btn-outline btn-primary btn-xs"
             >
               <FiEdit />
@@ -70,9 +66,9 @@ export default function Task({ task }: Props) {
         </div>
       </div>
 
-      <Modal>
-        <TaskCreateForm />
-      </Modal>
+      <ModalComponent setOpenModal={setOpenModal} openModal={openModal}>
+        <TaskEditForm setOpenModal={setOpenModal} data={task} />
+      </ModalComponent>
     </>
   );
 }

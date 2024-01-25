@@ -1,8 +1,9 @@
+import { TaskInterface } from "@/lib/types";
 import axios from "axios";
 import { Button } from "flowbite-react";
 import { useRouter } from "next/navigation";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -11,11 +12,12 @@ type Inputs = {
   priority: string;
 };
 type Props = {
+  data: TaskInterface;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
-export default function TaskCreateForm({ setOpenModal }: Props) {
+export default function TaskEditForm({ data, setOpenModal }: Props) {
   const router = useRouter();
-
+  console.log(data);
   const {
     register,
     handleSubmit,
@@ -24,6 +26,9 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
     formState: { errors },
   } = useForm<Inputs>();
   const [loading, setLoading] = useState<boolean>(false);
+  useEffect(() => {
+    reset(data);
+  }, [data, reset]);
   const closeModal = () => {
     setOpenModal(false);
   };
@@ -31,14 +36,13 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
     setLoading(true);
 
     try {
-      const result = await axios.post("/api/dashboard/tasks", {
+      const result = await axios.put("/api/dashboard/tasks", {
         ...data,
-        status: true,
       });
       setLoading(false);
 
       if (result.data.status === "success") {
-        toast.success("Blog Create Successfully");
+        toast.success("Blog Update Successfully");
         reset();
         closeModal();
         router.refresh();
@@ -111,7 +115,7 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
             isProcessing={loading}
             disabled={loading}
           >
-            Save
+            Update
           </Button>
         </div>
       </form>
