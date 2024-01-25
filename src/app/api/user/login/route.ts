@@ -30,3 +30,11 @@ export async function POST(request: Request) {
     });
   }
 }
+export async function GET() {
+  const expirationDate = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  const cookieString = `token=${""}; expires=${expirationDate}; path=/`;
+  return NextResponse.json(
+    { status: "success", data: "" },
+    { status: 200, headers: { "set-cookie": cookieString } }
+  );
+}

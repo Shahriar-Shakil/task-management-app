@@ -2,8 +2,23 @@ import CreateTask from "@/components/CreateTask";
 import FilterUI from "@/components/FilterUI";
 import Tasks from "@/components/Tasks";
 import UserDropdown from "@/components/UserDropdown";
+import { headers } from "next/headers";
 
-export default function Home() {
+const getUser = async () => {
+  const headerList = headers();
+  const user_id = parseInt(headerList.get("id") || "");
+  const res = await fetch(`${process.env.BACKEND_URL}/users/${user_id}`, {
+    next: { revalidate: 0 },
+  });
+  let userRes = await res.json();
+  return {
+    name: userRes.name,
+    email: userRes.email,
+  };
+};
+
+export default async function Home() {
+  const user = await getUser();
   return (
     <main className=" min-h-screen  p-8 md:p-24  ">
       <div className="flex flex-col items-center space-y-8 border border-black   py-8 px-4">
@@ -11,7 +26,7 @@ export default function Home() {
           <div className="w-full flex items-center justify-between ">
             <h2 className="text-center text-3xl">Easy Task Manager</h2>
             <div className="z-50">
-              <UserDropdown />
+              <UserDropdown user={user} />
             </div>
           </div>
         </div>

@@ -16,7 +16,6 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [loading, setLoading] = useState<boolean>(false);
-  console.log(callbackUrl, "callbackUrl");
   const {
     register,
     handleSubmit,
