@@ -52,3 +52,22 @@ export async function PUT(request: Request) {
     return NextResponse.json({ status: "fail", data: error.toString() });
   }
 }
+export async function DELETE(req: Request) {
+  try {
+    const headerList = headers();
+    const authorId = parseInt(headerList.get("id") || "");
+    const reqBody = await req.json();
+    let result = await axiosInstance.delete(
+      `/users/${authorId}/tasks/${reqBody.id}`,
+      reqBody
+    );
+    console.log(result.data);
+    if (result.data) {
+      return NextResponse.json({ status: "success", data: result.data });
+    } else {
+      return NextResponse.json({ status: "fail", data: {} });
+    }
+  } catch (error: any) {
+    return NextResponse.json({ status: "fail", data: error.toString() });
+  }
+}

@@ -1,12 +1,14 @@
 "use client";
-import React, { useState } from "react";
-import { FiEdit, FiTrash } from "react-icons/fi";
-import Modal from "./ModalCompoent";
-import TaskCreateForm from "./Form/TaskCreateForm";
-import { Badge } from "flowbite-react";
-import { Checkbox, Label } from "flowbite-react";
-import TaskEditForm from "./Form/TaskEditForm";
 import { TaskInterface } from "@/lib/types";
+import axios from "axios";
+import { Badge, Button } from "flowbite-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { FaCheck } from "react-icons/fa";
+import { FiEdit, FiTrash } from "react-icons/fi";
+import { ImCheckboxUnchecked } from "react-icons/im";
+import TaskEditForm from "./Form/TaskEditForm";
 import ModalComponent from "./ModalCompoent";
 
 type Props = {
@@ -14,8 +16,55 @@ type Props = {
 };
 
 export default function Task({ task }: Props) {
+  const router = useRouter();
+  const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
+  const [statusLoading, setStatusLoading] = useState<boolean>(false);
+
   const [openModal, setOpenModal] = useState(false);
 
+  const handleDelete = async (id: any) => {
+    setDeleteLoading(true);
+    try {
+      const result = await axios.delete("/api/dashboard/tasks", {
+        data: {
+          id,
+        },
+      });
+      setDeleteLoading(false);
+      if (result.data.status === "success") {
+        toast.success("Task Delete Successfully");
+        router.refresh();
+      } else {
+        toast.error(result.data.data);
+      }
+    } catch (error: any) {
+      setDeleteLoading(false);
+
+      toast.error(error.toString());
+    }
+  };
+  const handleChangeStatus = async (data: TaskInterface) => {
+    setStatusLoading(true);
+    try {
+      const result = await axios.put("/api/dashboard/tasks", {
+        id: data.id,
+        status: !data.status,
+      });
+      setStatusLoading(false);
+
+      if (result.data.status === "success") {
+        toast.success("Update Successfully");
+
+        router.refresh();
+      } else {
+        toast.error(result.data.data);
+      }
+    } catch (error: any) {
+      setStatusLoading(false);
+
+      toast.error(error.toString());
+    }
+  };
   return (
     <>
       <div
@@ -51,17 +100,32 @@ export default function Task({ task }: Props) {
           </div>
 
           <div className="flex items-center gap-2">
-            <Checkbox className="w-6 h-6" checked={!task.status} />
-
-            <button
-              onClick={() => setOpenModal(true)}
-              className="btn btn-outline btn-primary btn-xs"
+            <Button
+              onClick={() => handleChangeStatus(task)}
+              color="light"
+              size="xs"
+              disabled={statusLoading}
+              isProcessing={statusLoading}
             >
+              {task.status ? (
+                <ImCheckboxUnchecked className="" />
+              ) : (
+                <FaCheck className="" />
+              )}
+            </Button>
+
+            <Button onClick={() => setOpenModal(true)} color="blue" size="xs">
               <FiEdit />
-            </button>
-            <button className="btn btn-outline btn-error btn-xs">
+            </Button>
+            <Button
+              onClick={() => handleDelete(task.id)}
+              color="failure"
+              size="xs"
+              disabled={deleteLoading}
+              isProcessing={deleteLoading}
+            >
               <FiTrash />
-            </button>
+            </Button>
           </div>
         </div>
       </div>

@@ -17,7 +17,6 @@ type Props = {
 };
 export default function TaskEditForm({ data, setOpenModal }: Props) {
   const router = useRouter();
-  console.log(data);
   const {
     register,
     handleSubmit,
@@ -26,23 +25,23 @@ export default function TaskEditForm({ data, setOpenModal }: Props) {
     formState: { errors },
   } = useForm<Inputs>();
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     reset(data);
   }, [data, reset]);
   const closeModal = () => {
     setOpenModal(false);
   };
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
-
     try {
       const result = await axios.put("/api/dashboard/tasks", {
         ...data,
       });
       setLoading(false);
-
       if (result.data.status === "success") {
-        toast.success("Blog Update Successfully");
+        toast.success("Update Successfully");
         reset();
         closeModal();
         router.refresh();
@@ -51,7 +50,6 @@ export default function TaskEditForm({ data, setOpenModal }: Props) {
       }
     } catch (error: any) {
       setLoading(true);
-
       toast.error(error.toString());
     }
   };
