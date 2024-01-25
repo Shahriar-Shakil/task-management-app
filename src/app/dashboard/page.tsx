@@ -25,7 +25,7 @@ export default async function Home({
   const user = await getUser();
   const { priority, status, search } = searchParams ?? {};
   return (
-    <main className=" min-h-screen  p-8 md:p-24  ">
+    <main className=" min-h-screen  p-3 md:p-24  ">
       <div className="flex flex-col items-center space-y-8 border border-black   py-8 px-4">
         <div className="z-10 max-w-2xl w-full items-center justify-between font-mono text-sm lg:flex">
           <div className="w-full flex items-center justify-between ">
