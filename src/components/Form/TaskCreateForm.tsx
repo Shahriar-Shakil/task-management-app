@@ -81,8 +81,9 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
                 <select
                   {...register("priority", { required: "This is required." })}
                   className="select select-bordered w-full "
+                  defaultValue={""}
                 >
-                  <option value="" disabled selected>
+                  <option value="" disabled>
                     Pick one
                   </option>
                   <option value="low">Low</option>

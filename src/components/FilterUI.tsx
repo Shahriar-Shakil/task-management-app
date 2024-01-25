@@ -17,9 +17,9 @@ export default function FilterUI({}: Props) {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
               />
             </svg>
@@ -35,17 +35,13 @@ export default function FilterUI({}: Props) {
       </form>
       <div className=" col-start-2 md:col-start-3 col-span-3 md:col-span-2 flex	gap-2">
         <select className="select select-bordered select-md w-full max-w-xs">
-          <option value="" selected>
-            All
-          </option>
+          <option value="">All</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
         </select>
         <select className="select select-bordered select-md w-full max-w-xs">
-          <option value="" selected>
-            All
-          </option>
+          <option value="">All</option>
           <option value="1">Complete</option>
           <option value="0">In Complete</option>
         </select>
