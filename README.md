@@ -4,6 +4,10 @@ This is a simple task manager app built with Next.js, utilizing a mock API for d
 
 #### [Live here](https://task-management-app-eight-lemon.vercel.app/) in your browser to access the app.
 
+## Live Video Demonstration
+
+I have created a live video demonstration to showcase the features and functionality of the application. You can watch the video by clicking [here](https://www.loom.com/share/94dafb63fadc4dcaac6d59e2e013e5a0?sid=2953b09d-cb80-4a18-81b2-98c869238cfe).to access the app.
+
 #### Dummy Account
 
 1. **Sign in credential :**
