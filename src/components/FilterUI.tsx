@@ -49,7 +49,7 @@ export default function FilterUI({}: Props) {
         <div className="relative">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg
-              className="w-4 h-4 text-gray-500 dark:text-gray-400"
+              className="w-4 h-4 text-gray-500 "
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -68,7 +68,7 @@ export default function FilterUI({}: Props) {
             onChange={handleChange}
             type="search"
             id="default-search"
-            className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500  "
             placeholder="Search "
             required
           />
@@ -77,7 +77,7 @@ export default function FilterUI({}: Props) {
       <div className=" col-start-2 md:col-start-3 col-span-3 md:col-span-2 flex	gap-2">
         <select
           onChange={handlePriority}
-          className="select select-bordered select-md w-full max-w-xs"
+          className="select select-bordered select-md w-full max-w-xs bg-white"
         >
           <option value="all">All</option>
           <option value="low">Low</option>
@@ -86,7 +86,7 @@ export default function FilterUI({}: Props) {
         </select>
         <select
           onChange={handleStatus}
-          className="select select-bordered select-md w-full max-w-xs"
+          className="select select-bordered select-md w-full max-w-xs bg-white"
         >
           <option value="all">All</option>
           <option value="1">Complete</option>
