@@ -1,6 +1,5 @@
-import FilterUI from "@/components/FilterUI";
+import TaskCreateForm from "@/components/Form/TaskCreateForm";
 import PageWrapper from "@/components/PageWrapper";
-import Tasks from "@/components/Tasks";
 
 export default async function Home({
   params,
@@ -14,12 +13,7 @@ export default async function Home({
     <PageWrapper>
       <main className=" min-h-screen  p-3 md:p-16  ">
         <div className="flex flex-col items-center space-y-8   px-4">
-          <div className=" max-w-2xl w-full items-center justify-between font-mono text-sm lg:flex">
-            <div className="w-full space-y-3">
-              <FilterUI />
-              <Tasks priority={priority} status={status} search={search} />
-            </div>
-          </div>
+          <TaskCreateForm />
         </div>
       </main>
     </PageWrapper>

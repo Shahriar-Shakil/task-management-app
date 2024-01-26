@@ -36,7 +36,7 @@ export default function UserDropdown({ user }: Props) {
       dismissOnClick={false}
       renderTrigger={() => (
         <span>
-          <Avatar placeholderInitials={name} rounded bordered color="purple" />
+          <Avatar placeholderInitials={name} rounded bordered color="gray" />
         </span>
       )}
     >

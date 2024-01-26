@@ -18,7 +18,7 @@ export default function CreateTask({}: Props) {
         </Button>
       </div>
       <ModalComponent setOpenModal={setOpenModal} openModal={openModal}>
-        <TaskCreateForm setOpenModal={setOpenModal} />
+        <TaskCreateForm />
       </ModalComponent>
     </>
   );

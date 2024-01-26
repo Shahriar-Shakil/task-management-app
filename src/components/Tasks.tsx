@@ -11,7 +11,6 @@ type Props = {
 
 export default async function Tasks({ priority, status, search }: Props) {
   const taskResult = await getTasks(priority, status, search);
-  // console.log(taskResult, "taskresult");
   let taskView;
   if (taskResult?.length) {
     taskView = taskResult?.map((item: TaskInterface) => (

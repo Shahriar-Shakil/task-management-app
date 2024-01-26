@@ -1,19 +1,19 @@
+"use client";
 import axios from "axios";
 import { Button, Select, TextInput } from "flowbite-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 type Inputs = {
   title: string;
   priority: string;
 };
-type Props = {
-  setOpenModal: Dispatch<SetStateAction<boolean>>;
-};
-export default function TaskCreateForm({ setOpenModal }: Props) {
+type Props = {};
+export default function TaskCreateForm({}: Props) {
   const router = useRouter();
 
   const {
@@ -24,9 +24,7 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
     formState: { errors },
   } = useForm<Inputs>();
   const [loading, setLoading] = useState<boolean>(false);
-  const closeModal = () => {
-    setOpenModal(false);
-  };
+
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
 
@@ -40,7 +38,7 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
       if (result.data.status === "success") {
         toast.success("Task Create Successfully");
         reset();
-        closeModal();
+        router.push("/dashboard");
         router.refresh();
       } else {
         toast.error(result.data.data);
@@ -53,10 +51,11 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
   };
 
   return (
-    <div>
+    <div className="max-w-2xl w-full">
       <form
+        // action={createTaskAction}
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2"
+        className=" shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl "
       >
         <div className="px-4 py-6 sm:p-8">
           <div className="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
@@ -96,18 +95,17 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <button
-            type="button"
-            className="text-sm font-semibold leading-6 text-gray-900"
-            onClick={closeModal}
-          >
-            Cancel
-          </button>
+        <div className="flex items-center justify-end gap-x-2 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+          <Link href="/dashboard">
+            <Button size={"xs"} outline>
+              Back
+            </Button>
+          </Link>
+
           <Button
             className=""
             type="submit"
-            size="md"
+            size="xs"
             isProcessing={loading}
             disabled={loading}
           >

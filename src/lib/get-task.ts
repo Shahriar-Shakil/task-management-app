@@ -34,7 +34,9 @@ export const getTasks = async (
   }
 
   // console.log(url, queryParams);
-  const response = await fetch(url, { next: { revalidate: 0 } });
+  const response = await fetch(url, {
+    cache: "no-store",
+  });
   if (!response.ok) {
     console.log("unable to fetch data");
     return [];
