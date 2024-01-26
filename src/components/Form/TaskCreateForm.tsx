@@ -80,7 +80,7 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
               <div className="mt-2">
                 <select
                   {...register("priority", { required: "This is required." })}
-                  className="select select-bordered w-full "
+                  className="select select-bordered w-full bg-white"
                   defaultValue={""}
                 >
                   <option value="" disabled>
