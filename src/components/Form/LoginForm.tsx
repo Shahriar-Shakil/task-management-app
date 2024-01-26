@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import { Button } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -59,7 +59,7 @@ export default function LoginForm() {
                   Email address
                 </label>
                 <div className="mt-2">
-                  <input
+                  <TextInput
                     id="email"
                     type="email"
                     autoComplete="email"
@@ -67,7 +67,6 @@ export default function LoginForm() {
                       required: "Email is required",
                     })}
                     required
-                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <p className="text-red-500">{errors.email?.message}</p>
                 </div>
@@ -81,7 +80,7 @@ export default function LoginForm() {
                   Password
                 </label>
                 <div className="mt-2">
-                  <input
+                  <TextInput
                     id="password"
                     type="password"
                     {...register("password", {
@@ -89,7 +88,6 @@ export default function LoginForm() {
                     })}
                     autoComplete="current-password"
                     required
-                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <p className="text-red-500">{errors.password?.message}</p>
                 </div>

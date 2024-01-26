@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Button } from "flowbite-react";
+import { Button, Select, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 
 import React, { Dispatch, SetStateAction, useState } from "react";
@@ -65,10 +65,9 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
                 Title
               </label>
               <div className="mt-2">
-                <input
+                <TextInput
                   type="text"
                   {...register("title", { required: "This is required." })}
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 />
                 <p className="text-red-500 text-xs">{errors?.title?.message}</p>
               </div>
@@ -78,9 +77,9 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
                 Priority
               </label>
               <div className="mt-2">
-                <select
+                <Select
                   {...register("priority", { required: "This is required." })}
-                  className="select select-bordered w-full bg-white"
+                  className=" w-full"
                   defaultValue={""}
                 >
                   <option value="" disabled>
@@ -89,7 +88,7 @@ export default function TaskCreateForm({ setOpenModal }: Props) {
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
                   <option value="high">High</option>
-                </select>
+                </Select>
                 <p className="text-red-500 text-xs">
                   {errors?.priority?.message}
                 </p>

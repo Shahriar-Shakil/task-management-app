@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { Button } from "flowbite-react";
+import { Button, TextInput } from "flowbite-react";
 
 type Inputs = {
   name: string;
@@ -68,8 +68,7 @@ export default function RegistrationForm() {
                   Name
                 </label>
                 <div className="mt-2">
-                  <input
-                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  <TextInput
                     {...register("name", {
                       required: " Name is required",
                     })}
@@ -86,13 +85,12 @@ export default function RegistrationForm() {
                   Email
                 </label>
                 <div className="mt-2">
-                  <input
+                  <TextInput
                     id="email"
                     autoComplete="username"
                     {...register("email", {
                       required: "Email is required",
                     })}
-                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <p className="text-red-500">{errors.email?.message}</p>
                 </div>
@@ -106,14 +104,13 @@ export default function RegistrationForm() {
                   Password
                 </label>
                 <div className="mt-2">
-                  <input
+                  <TextInput
                     id="password"
                     type="password"
                     autoComplete="current-password"
                     {...register("password", {
                       required: "Password is required",
                     })}
-                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <p className="text-red-300">{errors.email?.message}</p>
                 </div>
@@ -126,7 +123,7 @@ export default function RegistrationForm() {
                   Confirm Password
                 </label>
                 <div className="mt-2">
-                  <input
+                  <TextInput
                     id="confirm_password"
                     type="password"
                     autoComplete="new-password"
@@ -138,7 +135,6 @@ export default function RegistrationForm() {
                         }
                       },
                     })}
-                    className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   <p className="text-red-300">
                     {errors.confirm_password?.message}

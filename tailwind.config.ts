@@ -17,10 +17,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require("daisyui"),
-    require("@tailwindcss/forms"),
-    require("flowbite/plugin"),
-  ],
+  plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
 };
 export default config;

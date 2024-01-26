@@ -2,6 +2,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useCallback, useEffect } from "react";
 import { useDebounce } from "@uidotdev/usehooks";
+import { Select, TextInput } from "flowbite-react";
 
 type Props = {};
 
@@ -35,6 +36,7 @@ export default function FilterUI({}: Props) {
     }
   }, [debouncedSearchTerm]);
   const handlePriority = (e: any) => {
+    console.log(e.target.value);
     router.push(pathname + "?" + createQueryString("priority", e.target.value));
   };
   const handleStatus = (e: any) => {
@@ -64,34 +66,27 @@ export default function FilterUI({}: Props) {
               />
             </svg>
           </div>
-          <input
+          <TextInput
             onChange={handleChange}
             type="search"
             id="default-search"
-            className="block w-full p-3 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500  "
             placeholder="Search "
             required
           />
         </div>
       </form>
       <div className=" col-start-2 md:col-start-3 col-span-3 md:col-span-2 flex	gap-2">
-        <select
-          onChange={handlePriority}
-          className="select select-bordered select-md w-full max-w-xs bg-white"
-        >
+        <Select onChange={handlePriority} className="w-full">
           <option value="all">All</option>
           <option value="low">Low</option>
           <option value="medium">Medium</option>
           <option value="high">High</option>
-        </select>
-        <select
-          onChange={handleStatus}
-          className="select select-bordered select-md w-full max-w-xs bg-white"
-        >
+        </Select>
+        <Select onChange={handleStatus} className="w-full">
           <option value="all">All</option>
           <option value="1">Complete</option>
           <option value="0">Not Complete</option>
-        </select>
+        </Select>
       </div>
     </div>
   );
