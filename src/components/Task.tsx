@@ -1,10 +1,7 @@
 "use client";
 import { TaskInterface } from "@/lib/types";
-import axios from "axios";
 import { Badge, Button } from "flowbite-react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
 import { FiEdit, FiTrash } from "react-icons/fi";
 import { ImCheckboxUnchecked } from "react-icons/im";
@@ -13,58 +10,16 @@ import ModalComponent from "./ModalCompoent";
 
 type Props = {
   task: TaskInterface;
+  handleDeleteTask: (data: any) => void;
+  handleChangeStatus: (data: any) => void;
 };
 
-export default function Task({ task }: Props) {
-  const router = useRouter();
-  const [deleteLoading, setDeleteLoading] = useState<boolean>(false);
-  const [statusLoading, setStatusLoading] = useState<boolean>(false);
-
+export default function Task({
+  task,
+  handleDeleteTask,
+  handleChangeStatus,
+}: Props) {
   const [openModal, setOpenModal] = useState(false);
-
-  const handleDelete = async (id: any) => {
-    setDeleteLoading(true);
-    try {
-      const result = await axios.delete("/api/dashboard/tasks", {
-        data: {
-          id,
-        },
-      });
-      setDeleteLoading(false);
-      if (result.data.status === "success") {
-        toast.success("Task Delete Successfully");
-        router.refresh();
-      } else {
-        toast.error(result.data.data);
-      }
-    } catch (error: any) {
-      setDeleteLoading(false);
-
-      toast.error(error.toString());
-    }
-  };
-  const handleChangeStatus = async (data: TaskInterface) => {
-    setStatusLoading(true);
-    try {
-      const result = await axios.put("/api/dashboard/tasks", {
-        id: data.id,
-        status: !data.status,
-      });
-      setStatusLoading(false);
-
-      if (result.data.status === "success") {
-        toast.success("Update Successfully");
-
-        router.refresh();
-      } else {
-        toast.error(result.data.data);
-      }
-    } catch (error: any) {
-      setStatusLoading(false);
-
-      toast.error(error.toString());
-    }
-  };
   return (
     <>
       <div
@@ -104,8 +59,6 @@ export default function Task({ task }: Props) {
               onClick={() => handleChangeStatus(task)}
               color="light"
               size="xs"
-              disabled={statusLoading}
-              isProcessing={statusLoading}
             >
               {task.status ? (
                 <ImCheckboxUnchecked className="" />
@@ -118,11 +71,9 @@ export default function Task({ task }: Props) {
               <FiEdit />
             </Button>
             <Button
-              onClick={() => handleDelete(task.id)}
+              onClick={() => handleDeleteTask(task.id)}
               color="failure"
               size="xs"
-              disabled={deleteLoading}
-              isProcessing={deleteLoading}
             >
               <FiTrash />
             </Button>

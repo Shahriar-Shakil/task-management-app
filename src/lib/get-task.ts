@@ -18,6 +18,7 @@ export const getTasks = async (
       : priority;
     queryParams.priority = priorityValue;
   }
+
   // status
   if (status && status !== "all") {
     const statusValue = Array.isArray(status) ? status.join(",") : status;

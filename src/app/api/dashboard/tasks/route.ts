@@ -1,4 +1,5 @@
 import axiosInstance from "@/lib/axios";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 
@@ -34,6 +35,8 @@ export async function PUT(request: Request) {
     return NextResponse.json({ status: "success", data: {} });
   } catch (error: any) {
     return NextResponse.json({ status: "fail", data: error.toString() });
+  } finally {
+    revalidatePath("/dashboard");
   }
 }
 export async function DELETE(req: Request) {

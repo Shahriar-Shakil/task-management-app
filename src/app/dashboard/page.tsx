@@ -1,6 +1,7 @@
 import FilterUI from "@/components/FilterUI";
 import PageWrapper from "@/components/PageWrapper";
 import Tasks from "@/components/Tasks";
+import { getTasks } from "@/lib/get-task";
 
 export default async function Home({
   params,
@@ -10,6 +11,8 @@ export default async function Home({
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
   const { priority, status, search } = searchParams ?? {};
+  const taskResult = await getTasks(priority, status, search);
+
   return (
     <PageWrapper>
       <main className=" min-h-screen  p-3 md:p-16  ">
@@ -17,7 +20,7 @@ export default async function Home({
           <div className=" max-w-2xl w-full items-center justify-between font-mono text-sm lg:flex">
             <div className="w-full space-y-3">
               <FilterUI />
-              <Tasks priority={priority} status={status} search={search} />
+              <Tasks tasks={taskResult} />
             </div>
           </div>
         </div>

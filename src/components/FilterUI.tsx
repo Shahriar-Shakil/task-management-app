@@ -84,8 +84,8 @@ export default function FilterUI({}: Props) {
         </Select>
         <Select onChange={handleStatus} className="w-full">
           <option value="all">All</option>
-          <option value="1">Complete</option>
-          <option value="0">Not Complete</option>
+          <option value="0">Complete</option>
+          <option value="1">Not Complete</option>
         </Select>
       </div>
     </div>
