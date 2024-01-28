@@ -49,17 +49,17 @@ export default function RegistrationForm() {
     }
   };
   return (
-    <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+    <div className="flex flex-1 flex-col justify-center px-4 py-2 md:py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
       <div className="mx-auto w-full max-w-sm lg:w-96">
         <div>
-          <h2 className="mt-8 text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <h2 className=" text-2xl font-bold leading-9 tracking-tight text-gray-900">
             Register your account
           </h2>
         </div>
 
-        <div className="mt-10">
+        <div className="mt-2">
           <div>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
               <div>
                 <label
                   htmlFor="firstName"
@@ -156,7 +156,7 @@ export default function RegistrationForm() {
             </form>
           </div>
 
-          <div className="mt-10">
+          <div className="mt-4">
             <div className="relative">
               <div
                 className="absolute inset-0 flex items-center"

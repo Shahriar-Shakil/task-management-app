@@ -5,6 +5,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     let reqBody = await request.json();
+
     const userResponse = await axiosInstance.get(
       `/users?email=${reqBody?.email}&password=${reqBody?.password}`
     );

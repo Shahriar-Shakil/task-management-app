@@ -36,7 +36,6 @@ export default function FilterUI({}: Props) {
     }
   }, [debouncedSearchTerm]);
   const handlePriority = (e: any) => {
-    console.log(e.target.value);
     router.push(pathname + "?" + createQueryString("priority", e.target.value));
   };
   const handleStatus = (e: any) => {

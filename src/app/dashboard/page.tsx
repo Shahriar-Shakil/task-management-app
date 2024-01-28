@@ -15,16 +15,14 @@ export default async function Home({
 
   return (
     <PageWrapper>
-      <main className=" min-h-screen  p-3 md:p-16  ">
-        <div className="flex flex-col items-center space-y-8   px-4">
-          <div className=" max-w-2xl w-full items-center justify-between font-mono text-sm lg:flex">
-            <div className="w-full space-y-3">
-              <FilterUI />
-              <Tasks tasks={taskResult} />
-            </div>
+      <div className="flex flex-col items-center space-y-8   px-4">
+        <div className=" max-w-2xl w-full items-center justify-between font-mono text-sm lg:flex">
+          <div className="w-full space-y-3">
+            <FilterUI />
+            <Tasks tasks={taskResult} />
           </div>
         </div>
-      </main>
+      </div>
     </PageWrapper>
   );
 }

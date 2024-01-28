@@ -1,5 +1,6 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
+import Footer from "./Footer";
 
 const variants = {
   hidden: { opacity: 0, x: 0, y: -200 },
@@ -19,7 +20,8 @@ export default function PageWrapper({
         animate="enter"
         transition={{ type: "linear" }}
       >
-        {children}
+        <main className=" p-8 md:p-24 md:py-8  ">{children}</main>
+        <Footer />
       </motion.main>
     </AnimatePresence>
   );

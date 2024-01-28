@@ -20,7 +20,7 @@ export default function Tasks({ tasks }: Props) {
     tasks,
     // @ts-ignore
     (state: any[], updateTasks: any) => {
-      console.log(updateTasks, "up");
+      // console.log(updateTasks, "up");
       return [...updateTasks];
     }
   );
@@ -42,6 +42,7 @@ export default function Tasks({ tasks }: Props) {
     // filter by status
     if (status) {
       const filterStatus = optimisticTask.filter((item: any) => {
+        console.log(status);
         if (status === "all") {
           return item;
         } else if (item.status == status) {

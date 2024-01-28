@@ -22,9 +22,7 @@ export default function Home() {
         </nav>
       </header>
       <PageWrapper>
-        <main className=" min-h-screen  p-8 md:p-24 md:py-8  ">
-          <LoginForm />
-        </main>
+        <LoginForm />
       </PageWrapper>
     </>
   );
